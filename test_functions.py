@@ -38,16 +38,26 @@ def test_calculer_moyenne_liste_normale(self):
  # TODO: Testez avec [10, 15, 20] - résultat attendu : 15
  # Utilisez self.assertEqual(resultat, valeur_attendue)
  self.assertEqual(calculer_moyenne([10, 15, 20]), 15)
- pass
+ 
 def test_calculer_moyenne_liste_vide(self):
  """Test avec une liste vide"""
  self.assertEqual(calculer_moyenne([]), 0)
- pass
+ 
 def test_calculer_moyenne_une_note(self):
  """Test avec une seule note"""
  # TODO: Testez avec [18] - résultat attendu : 18
  self.assertEqual(calculer_moyenne([18]), 18)
- pass
+ 
+
+def test_convertir_temperature_zero(self):
+ """Test conversion 0°C = 32°F"""
+ # TODO: Testez la conversion de 0°C
+ self.assertEqual(convertir_temperature(0), 32)
+ 
+def test_convertir_temperature_eau_bouillante(self):
+ """Test conversion 100°C = 212°F"""
+ # TODO: Testez la conversion de 100°C
+ self.assertEqual(convertir_temperature(100), 212)
 
 # À COMPLÉTER : Ajoutez vos tests ici
 # Permet d'exécuter les tests
