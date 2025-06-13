@@ -28,6 +28,7 @@ def test_valider_email_valide(self):
  """Test avec un email valide"""
  self.assertTrue(valider_email("amaury@example.com"))
  
+ # TRAITER LES EXCEPTIONS
  """Test avec un email invalide et levée d'une exception lié à l'absence de @"""
  with self.assertRaises(ValueError) as context1:
         valider_email("amauryexample.com")
@@ -37,13 +38,14 @@ def test_valider_email_valide(self):
  with self.assertRaises(ValueError) as context2:
     valider_email("amaury@examplecom")
  self.assertEqual(str(context2.exception), "Email: besoin d'un point dans l'email")
-
-# def test_valider_email_sans_arobase(self):
-#  """Test avec un email sans @"""
-#  self.assertFalse(valider_email("testexample.com"))
-# def test_valider_email_sans_point(self):
-#  """Test avec un email sans point"""
-#  self.assertFalse(valider_email("test@example"))
+ 
+# Validation boolean pour les tests d'email
+def test_valider_email_sans_arobase(self):
+ """Test avec un email sans @"""
+ self.assertFalse(valider_email("testexample.com"))
+def test_valider_email_sans_point(self):
+ """Test avec un email sans point"""
+ self.assertFalse(valider_email("test@example"))
  
 def test_calculer_moyenne_liste_normale(self):
  """Test avec une liste de notes normales"""
