@@ -1,5 +1,5 @@
 import unittest
-from functions import additionner, est_pair, valider_email, calculer_moyenne, convertir_temperature
+from functions import additionner, est_pair, valider_email, calculer_moyenne, convertir_temperature, diviser, valider_mot_de_passe
 class TestFonctions(unittest.TestCase):
 
  def test_additionner_cas_positif(self):
@@ -61,6 +61,21 @@ def test_convertir_temperature_eau_bouillante(self):
  self.assertEqual(convertir_temperature(100), 212)
 
 # À COMPLÉTER : Ajoutez vos tests ici
+
+def test_diviser(self):
+    self.assertEqual(diviser(10, 2), 5)
+    self.assertAlmostEqual(diviser(7, 3), 7/3, places=5)
+
+    with self.assertRaises(ValueError):
+        diviser(5, 0)
+
+def test_valider_mot_de_passe(self):
+    self.assertTrue(valider_mot_de_passe("anpo1!"))
+    self.assertFalse(valider_mot_de_passe("anopo"))        
+    self.assertFalse(valider_mot_de_passe("anipo1"))        
+    self.assertFalse(valider_mot_de_passe("AnoPo"))        
+    self.assertFalse(valider_mot_de_passe("AnoPo1")) 
+
 # Permet d'exécuter les tests
 if __name__ == '__main__':
  unittest.main()

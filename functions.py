@@ -20,3 +20,21 @@ def calculer_moyenne(notes):
 def convertir_temperature(celsius):
  """Convertit des degrés Celsius en Fahrenheit"""
  return (celsius * 9/5) + 32
+
+def diviser(a, b):
+    """Divise a par b, une erreur doit survenir si b vaut 0"""
+    if b == 0:
+        raise ValueError("Division par zéro interdite")
+    return a / b
+
+def valider_mot_de_passe(mot_de_passe):
+    """Valide un mot de passe en respectant ces critères:"""
+    if len(mot_de_passe) < 8:
+        return False
+    if not any(c.isupper() for c in mot_de_passe):
+        return False
+    if not any(c.isdigit() for c in mot_de_passe):
+        return False
+    if not any(c in "!@#$%^&*()-_+=" for c in mot_de_passe):
+        return False
+    return True
