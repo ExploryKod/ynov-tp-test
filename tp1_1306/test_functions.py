@@ -38,12 +38,12 @@ def test_valider_email_valide(self):
     valider_email("amaury@examplecom")
  self.assertEqual(str(context2.exception), "Email: besoin d'un point dans l'email")
 
-def test_valider_email_sans_arobase(self):
- """Test avec un email sans @"""
- self.assertFalse(valider_email("testexample.com"))
-def test_valider_email_sans_point(self):
- """Test avec un email sans point"""
- self.assertFalse(valider_email("test@example"))
+# def test_valider_email_sans_arobase(self):
+#  """Test avec un email sans @"""
+#  self.assertFalse(valider_email("testexample.com"))
+# def test_valider_email_sans_point(self):
+#  """Test avec un email sans point"""
+#  self.assertFalse(valider_email("test@example"))
  
 def test_calculer_moyenne_liste_normale(self):
  """Test avec une liste de notes normales"""
