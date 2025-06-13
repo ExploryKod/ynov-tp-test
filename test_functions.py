@@ -23,10 +23,20 @@ def test_est_pair_zero(self):
     """Test avec zéro"""
     self.assertTrue(est_pair(0))
 
+# VALIDATION DES EMAILS
 def test_valider_email_valide(self):
  """Test avec un email valide"""
- self.assertTrue(valider_email("test@example.com"))
- 
+ self.assertTrue(valider_email("amaury@example.com"))
+ """Test avec un email invalide et levée d'une exception lié à l'absence de @"""
+ with self.assertRaises(ValueError) as context1:
+        valider_email("amauryexample.com")
+ self.assertEqual(str(context1.exception), "Email: besoin d'un @ dans l'email")
+
+ """Test avec un email invalide et levée d'une exception lié à l'absence de ."""
+ with self.assertRaises(ValueError) as context2:
+    valider_email("amaury@examplecom")
+ self.assertEqual(str(context2.exception), "Email: besoin d'un point dans l'email")
+
 def test_valider_email_sans_arobase(self):
  """Test avec un email sans @"""
  self.assertFalse(valider_email("testexample.com"))

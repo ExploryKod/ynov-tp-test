@@ -7,9 +7,9 @@ def est_pair(nombre):
 def valider_email(email):
  """Valide un email simple (doit contenir @ et .)"""
  if "@" not in email:
-    return False
+    raise ValueError("Email: besoin d'un @ dans l'email")
  if "." not in email:
-    return False
+    raise ValueError("Email: besoin d'un point dans l'email")
  return True
 
 def calculer_moyenne(notes):
