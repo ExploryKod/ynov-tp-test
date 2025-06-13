@@ -12,6 +12,7 @@ class TestFonctions(unittest.TestCase):
     resultat = additionner(-2, -3)
     self.assertEqual(resultat, -5)
     
+    
 def test_est_pair_nombre_pair(self):
     """Test avec un nombre pair"""
     self.assertTrue(est_pair(4))
