@@ -27,6 +27,7 @@ def test_est_pair_zero(self):
 def test_valider_email_valide(self):
  """Test avec un email valide"""
  self.assertTrue(valider_email("amaury@example.com"))
+ 
  """Test avec un email invalide et levée d'une exception lié à l'absence de @"""
  with self.assertRaises(ValueError) as context1:
         valider_email("amauryexample.com")
