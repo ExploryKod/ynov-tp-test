@@ -12,12 +12,13 @@ L'activité séance 2 du vendredi aprés-midi (20/06) à rendre pour le vendredi
 ### Activité S2 > Livrables : 
 
 1. Nouvelle version des tests (code) : 
-- se trouve dans le sous-dossier `ActiviteS2/SupermarketReceipt-Refactoring-Kata-main/python_pytest` 
+- se trouve dans le sous-dossier `ActiviteS2/Kata/python_pytest` 
 - C'est le zip de la branche main du kata de Emily Batch
 - On utilisera la version python avec pytest
 
 2. Rapport de couverture de code (avant/après)
-- Captures d'écrans dans le dossier `ActiviteS2/rapports-couverture`
+- Captures d'écrans de la couverture initiale des tests dans le dossier `ActiviteS2/rapports-couverture/avant` 
+- Captures d'écrans de la couverture aprés mon refactoring : `ActiviteS2/rapports-couverture/apres`
 
 3. Justification (texte court .md, .txt ou Notion partagé) : 
 - Se trouve dans ce fichier : `ActiviteS2/justification.md`

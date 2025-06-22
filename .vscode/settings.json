@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./ActiviteS2/SupermarketReceipt-Refactoring-Kata-main/python_pytest/src"
+    ]
+}
