@@ -1,6 +1,7 @@
 import pytest
 
-from model_objects import Product, SpecialOfferType, ProductUnit
+from model_objects import Product, SpecialOfferType, ProductUnit, Discount
+from receipt import Receipt
 from shopping_cart import ShoppingCart
 from teller import Teller
 from tests.fake_catalog import FakeCatalog
@@ -29,3 +30,29 @@ def test_ten_percent_discount():
     assert 1.99 == receipt_item.price
     assert 2.5 * 1.99 == pytest.approx(receipt_item.total_price, 0.01)
     assert 2.5 == receipt_item.quantity
+
+def test_discount_on_toothbrush(): 
+    toothbrush = Product("toothbrush", ProductUnit.EACH)  
+    discount = Discount(toothbrush, "10% off", -0.10)  
+
+    assert discount.product == toothbrush  
+    assert discount.description == "10% off"  
+    assert discount.discount_amount == -0.10 
+    
+def test_receipt_add_discount_and_total_price_on_apples(): 
+    receipt = Receipt()
+
+    product = Product("apple", ProductUnit.EACH)
+    receipt.add_product(product, quantity=2, price=1.0, total_price=2.0)
+
+    discount = Discount(product, "2 for 1", -1.0)
+    receipt.add_discount(discount)
+    
+    assert len(receipt.items) == 1  
+    assert receipt.items[0].total_price == 2.0
+
+    assert len(receipt.discounts) == 1
+    assert receipt.discounts[0].description == "2 for 1"
+    assert receipt.discounts[0].discount_amount == -1.0
+
+    assert receipt.total_price() == 1.0  
