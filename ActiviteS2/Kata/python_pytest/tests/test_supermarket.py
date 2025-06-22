@@ -58,3 +58,25 @@ def test_receipt_total_price(receipt_with_apples):
     assert receipt.discounts[0].description == "2 for 1"
     assert receipt.discounts[0].discount_amount == -1.0
     assert receipt.total_price() == 1.0
+    
+def test_shopping_cart_add_item():
+    cart = ShoppingCart()
+    toothbrush = Product("toothbrush", ProductUnit.EACH)
+    
+    cart.add_item(toothbrush)  
+    
+    assert len(cart.items) == 1
+
+# Couvre shopping_cart > self._product_quantities[product] = self._product_quantities[product] + quantity
+def test_add_item_quantity_with_same_product_already_in_cart():
+     cart = ShoppingCart()
+     apples = Product("apples", ProductUnit.KILO)
+     
+     # Nous ajoutons une quantité 1 de pommes 
+     cart.add_item_quantity(apples, 1.0)
+     # Nous ajoutons à nouveau des pommes : quantité de 2
+     cart.add_item_quantity(apples, 1.0)
+     # Nous devons donc avoir une quantité 2 de pommes dans le panier
+     assert cart.product_quantities[apples] == 2.0
+     
+     
