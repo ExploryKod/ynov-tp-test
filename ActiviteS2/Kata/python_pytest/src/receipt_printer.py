@@ -18,7 +18,7 @@ class ReceiptPrinter:
         result += "\n"
         result += self.present_total(receipt)
         return str(result)
-
+    
     def print_receipt_item(self, item):
         total_price_printed = self.print_price(item.total_price)
         name = item.product.name

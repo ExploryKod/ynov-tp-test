@@ -1,6 +1,7 @@
 import pytest
 import math
 
+from catalog import SupermarketCatalog
 from model_objects import Product, SpecialOfferType, ProductUnit, Discount, Offer
 from receipt import Receipt
 from shopping_cart import ShoppingCart
@@ -93,19 +94,7 @@ def test_shopping_cart_handle_offers_with_no_offers():
      
      cart.handle_offers(receipt, offers, catalog)
      assert len(receipt.discounts) == 0
-     
-# def test_shopping_cart_handle_offers_with_one_offers():
-#      catalog = FakeCatalog()
-#      apples = Product("apples", ProductUnit.KILO)
-#      catalog.add_product(apples, 1.99)
-#      cart = ShoppingCart()
-#      offers = {apples: Offer(SpecialOfferType.THREE_FOR_TWO, apples, None)}
-#      cart.add_item_quantity(apples, 3.0)
-#      receipt = Receipt()
-     
-#      cart.handle_offers(receipt, offers, catalog)
-#      assert len(receipt.discounts) == 1
-     
+          
 def test_shopping_cart_handle_offers_with_three_for_two_offer():
     catalog = FakeCatalog()
     apples = Product("apples", ProductUnit.KILO)
@@ -272,3 +261,34 @@ def test_shopping_cart_handle_offers_with_ten_percent_discount():
     assert discount.product == apples
     assert discount.description == discount_description
     assert discount.discount_amount == pytest.approx(discount_amount)
+    
+def test_superMarketCatalog_add_product_exception_error():  
+    """  
+    Test that a ValueError is raised when the add_product is called directly from bdd
+    """  
+    catalog = SupermarketCatalog()
+    apples = Product("apples", ProductUnit.KILO)
+    unit_price = 1.99
+    with pytest.raises(Exception) as excinfo:  
+        catalog.add_product(apples, unit_price)
+        
+    assert str(excinfo.value) == "cannot be called from a unit test - it accesses the database"
+
+def test_superMarketCatalog_unit_price_exception_error():  
+    """  
+    Test that a ValueError is raised when the add_product is called directly from bdd
+    """  
+    catalog = SupermarketCatalog()
+    apples = Product("apples", ProductUnit.KILO)
+    with pytest.raises(Exception) as excinfo:  
+        catalog.unit_price(apples)
+            
+    assert str(excinfo.value) == "cannot be called from a unit test - it accesses the database"
+
+
+def test_teller_product_with_name_with_no_product_found():
+    catalog = FakeCatalog()
+    teller = Teller(catalog)
+    
+    assert teller.product_with_name("no-product") == None
+  
