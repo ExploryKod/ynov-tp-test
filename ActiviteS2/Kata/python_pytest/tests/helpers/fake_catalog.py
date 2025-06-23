@@ -1,6 +1,5 @@
 from catalog import SupermarketCatalog
 
-
 class FakeCatalog(SupermarketCatalog):
     def __init__(self):
         self.products = {}
