@@ -24,7 +24,7 @@ L'activité séance 2 du vendredi aprés-midi (20/06) à rendre pour le vendredi
   `ActiviteS2/rapports-couverture/apres` [Accés ici](./ActiviteS2/rapports-couverture/apres)<br>
 
 3. Justification (texte court .md, .txt ou Notion partagé) : 
-- Se trouve dans ce fichier : `ActiviteS2/justification.md`
+- Se trouve dans ce fichier : `ActiviteS2/justification.md` [Accés ici](./ActiviteS2/justification.md) <br>
 
 4. Liste des doublures utilisées avec explication
-- Se trouve dans ce fichier : `ActiviteS2/list_doublures.md`
+- Se trouve dans ce fichier : `ActiviteS2/list_doublures.md` [Accés ici](./ActiviteS2/list_doublures.md) <br>
