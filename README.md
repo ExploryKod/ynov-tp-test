@@ -21,7 +21,7 @@ L'activité séance 2 du vendredi aprés-midi (20/06) à rendre pour le vendredi
   `ActiviteS2/rapports-couverture/avant` [Accés ici](./ActiviteS2/rapports-couverture/avant)<br>
 
 - Captures d'écrans de la couverture aprés mon refactoring : <br> 
-  `ActiviteS2/rapports-couverture/apres` [Accés ici](./ActiviteS2/rapports-couverture/apres)<br>
+  `ActiviteS2/rapports-couverture/apres` [Accés ici](./ActiviteS2/rapports-couverture/apres/rapport_couverture_apres.png)<br>
 
 3. Justification (texte court .md, .txt ou Notion partagé) : 
 - Se trouve dans ce fichier : `ActiviteS2/justification.md` [Accés ici](./ActiviteS2/justification.md) <br>
