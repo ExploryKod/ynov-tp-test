@@ -76,3 +76,5 @@ Voici ce que nous pouvons faire pour tester les cas où l'API retourne une erreu
 - Isoler certains appels pour certains cas précis ou des groupe de cas avec une même cause d'erreur
 - Vérifier les cas où l'appel ne retourne pas la donnée : donnée inexistante
 - Vérifier les cas où l'appel ne trouve pas un fichier : fichier non-trouvé
+
+..to be continued (jusque vendredi)
