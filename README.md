@@ -141,3 +141,11 @@ tp3.md 2025-06-12
 ├── pytest.ini # À créer
 └── README.md # À créer
 
+Une fois réorganisé, j'ai run les tests avec les commande. 
+### Questions sur le nouvelle implémentation
+
+1. Lancez chaque commande et décrivez ce qui change dans l'affichage.
+
+- La commande 1 (pytest): ne donne que peu d'information, on sait juste quels fichiers sont testé avec un pourcentage de couverture des lignes de code.
+- La commande 2 (avec -v): plus verbeuse, on obtient un résultat par tests en plus des fichiers, on a aussi la couverture des lignes de la base de code testé.
+- La commande 3 (cibe sur test_book): on obtient le résultat de la commande 1 seulement sur les tests du fichier des book.
