@@ -83,6 +83,8 @@ Voici ce que nous pouvons faire pour tester les cas où l'API retourne une erreu
 
  4. Que doit retourner votre fonction si status_code != 200 ?
 
+ Elle va retourner une erreur avec le bon code selon l'erreur serveur (500, 503...) ou client (404 ...), une exception idéalement. Pour cela il faut avoir prévu dans le code ces exceptions afin de rendre plus lisible les messages. Nous en avons ici prévu assez peu.
+
  ## TP3 (MATIN)
 
 Voici une mauvaise structure de projet : 
@@ -105,6 +107,7 @@ Voici une mauvaise structure de projet :
 - Un développeur nouveau va prendre le temps de chercher où se trouve chaque test donc cela a un coût horaire.
 - Si le code évolue et que l'on inclu de nouvelles fonctionnalités : il sera difficile d'isoler les fichiers de certains tests car ils ne se basent pas sur les unités du code testés ou ne sépare pas tests unitaire / tests d'intégration. On va devoir recoder et réécrire plus de code qu'il en faudrait si on avait bien séparé et isolé les modules ou les comportements. Difficile de respecter le SRP (single responsibility principle) dans ce contexte.
 - On a aucun fichiers de configuration ou de models généraux et donc on doit répéter ces pattern avec risque d'erreurs et donc tests tronqués. On pourrait gagner à créer des fixtures mise dans un espace commun ou avoir un dossier de type "common". Cela n'est pas DRY (Do not Repeat Yourself).
+- Absence de package manager ou de requirements.txt pour être utilisé avec pip : cela engendre des risque d'installation des mauvaise versions des outils ou de prendre du temps à installer les outils erreur aprés erreur.
 
 2. Comment un nouveau développeur s'y retrouverait-il ?
 
@@ -116,4 +119,22 @@ Voici une mauvaise structure de projet :
 Comment c'est mal nommé, pytest ne repère pas tous les tests avec un simple `pytest` donc on doit faire a minimal cela :
 `pytest test1.py test_calcul_bidule.py TestUtilisateur.py autre_test.py`
 
+Nouvelle structure : 
 
+bibliotheque_projet/
+├── src/
+│ └── bibliotheque/
+│ ├── __init__.py
+│ ├── book.py # À créer
+│ ├── library.py # À créer
+│ └── user.py # À créer
+tp3.md 2025-06-12
+2 / 11
+├── tests/
+│ ├── __init__.py
+│ └── test_book.py # À créer
+│ └── test_library.py # À créer
+│ └── test_user.py # À créer
+├── requirements.txt # À créer
+├── pytest.ini # À créer
+└── README.md # À créer
