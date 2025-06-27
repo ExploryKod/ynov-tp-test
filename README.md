@@ -63,6 +63,9 @@ Je vous guide dans mes différentes réponses et documents associées aux questi
 > Consulter la capture d'écran `snapshots_states/kata_conversion_first_state.png` : état de base de l'exercice avant tout refactoring.<br>
 - [Cliquez ici pour accéder](./tp2_mocking_amaury/snapshots_states/kata_conversion_first_state.png)<br>
 
+Les autres captures seront présentes ici pour avoir les résultats des tests : 
+- [Cliquez ici pour accéder](./tp2_mocking_amaury/snapshots_states)<br>
+
 1. Que se passe-t-il si vous n'avez pas internet ?<br>
 - A ce stade, si l'on répare l'appel API, nous aurions accés à des données issue directement de l'API pour être réutilisé dans nos tests. Or si l'on veut tester en phase de développement sans accés internet et aussi avec de la performance nous avons un problème car aucune donnée ne peut parvenir à nos tests. Les tests vont donc échouer mais ce sera des échec faussés car le problème vient de l'absence de données fiables. Avec de la chance, l'outil de test prévient qu'aucune donnée n'est passé mais avec de la malchance on aurait affaire à des message trop généraux d'erreurs. Aussi nous n'aurions que peu d'information sur l'origine du problème car nous n'avons pas prévu de signaler clairement que le problème vient d'un accés internet défaillant.
 
