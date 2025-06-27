@@ -78,7 +78,7 @@ export class Event {
 - Dans un dossier usecases : nous créons `add-event.ts` et pour les tests `add-events.test.ts`
 - Nous créons des tests avec un `BeforeAll` qui va reprendre des objets et mettre en place l'environnement qui sera repris pat chaque test de cette suite.
 
-2. En TDD, phase rouge : nous allons écrire notre tests pour réaliser cette action :
+2. En TDD, **phase rouge** : nous allons écrire notre tests pour réaliser cette action :
 - Notre but est que l'évènement soit sauvegardé en base de donnée
 - On écrit donc un test en respectant le AAA et en utilisant ce que nous avons préparé.
 
@@ -96,5 +96,32 @@ Nous avons bel et bien un échec :
 
 En effet, notre code n'est pas encore implémenté : on a juste un squelette qui vise à ce que les tests n'échoue pas pour une raison non-lié à la fonctionnalité. 
 
+3. TDD - Ajouter un évènement - Faire passer les tests 
 
+Tout d'abord nous allons faire passer le test pour retourner un id : nous retournons en dur in id dans la fonction et il passe.
 
+Cette fois nous allons coder ce qui manque dans notre class qui créer les évènements. Nous allons créer un évènement en respectant notre entité Event.<br>
+Nous auront donc un use-case qui permet de vérifier le cas nominal d'ajout d'un évènement.
+
+Il retournera donc l'event issu de la base de donnée lors de l'appel à celle-ci. 
+Il pourra avantageusement utiliser l'adapter qui permet de mocker le comportement avec aisance. Nous avons en effet la possibilité de changer cela aisément grâce à nos interface et l'inversion de dépendance. Il sera aisé de simplement se connecter à un adapter qui appel une véritable base de donnée ensuite.
+
+Voici un extrait de notre méthode : 
+```ts
+    this.repository.create(
+      new Event({
+        id,
+        title: data.title,
+        participants: data.participants,
+        startDate: data.startDate,
+        endDate: data.endDate,
+      }),
+    );
+
+    return { id };
+  ```
+4. Phase du refactor : ajouter un évènement mais en traitant les cas limites et améliorer le code.
+
+Nous avons vérifier le cas positif, la mission principal de notre use-case mais nous ne savons rien de son comportement lors de cas limites, cas négatifs ou encore si le code respecte les bonnes pratiques pour son évolution.
+
+C'est pourquoi à nouveau, nous allons créer des tests en ce sens. C'est la phase du refactor.

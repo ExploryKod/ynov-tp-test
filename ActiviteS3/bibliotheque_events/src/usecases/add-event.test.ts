@@ -13,7 +13,7 @@ describe('Ajouter un évènement', () => {
     useCase = new AddNewEvent(repository, idGenerator);
   });
 
-  describe('Scenario: happy path - cas nominal', () => { 
+  describe('Scenario: happy path - cas nominal', () => {
     it("Doit retourner un id de l'évènement", async () => {
       const result = await useCase.execute({
         title: 'Randonnée dans les gorges du Tarn',
