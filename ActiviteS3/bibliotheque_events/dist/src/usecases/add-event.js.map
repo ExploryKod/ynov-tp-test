@@ -1,0 +1,1 @@
+{"version":3,"file":"add-event.js","sourceRoot":"","sources":["../../../src/usecases/add-event.ts"],"names":[],"mappings":";;;AAIA,MAAa,WAAW;IACtB,YACmB,UAA4B,EAC5B,WAAyB;QADzB,eAAU,GAAV,UAAU,CAAkB;QAC5B,gBAAW,GAAX,WAAW,CAAc;IACzC,CAAC;IAEJ,KAAK,CAAC,OAAO,CAAC,IAAS;QACrB,OAAO,EAAE,EAAE,EAAE,EAAE,EAAE,CAAC;IACpB,CAAC;CACF;AATD,kCASC"}
