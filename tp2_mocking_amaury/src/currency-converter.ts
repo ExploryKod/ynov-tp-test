@@ -3,7 +3,7 @@ import { Currency } from "./model/currency";
 import { ConversionRateApi } from "./external/conversion-rate-api";
 import { CurrencyIsoCode } from "./external/currency-iso-code";
 
-function codeToIsoCode(currency: Currency): CurrencyIsoCode {
+export function codeToIsoCode(currency: Currency): CurrencyIsoCode {
   switch (currency) {
     case Currency.Euro:
       return CurrencyIsoCode.EUR;
@@ -20,7 +20,7 @@ export class CurrencyConverter {
   constructor(private readonly conversionRateApi: ConversionRateApi) {}
 
   sum(target: Currency, ...money: Money[]): Money {
-    // We are paying each call we make to the API, so better not make useless calls
+   
     let amount = 0;
     const knownRates = new Map<Currency, number>();
     knownRates.set(target, 1);
