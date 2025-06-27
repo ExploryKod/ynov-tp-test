@@ -29,6 +29,11 @@ L'activité séance 2 du vendredi aprés-midi (20/06) à rendre pour le vendredi
 4. Liste des doublures utilisées avec explication
 - Se trouve dans ce fichier : `ActiviteS2/list_doublures.md` [Accés ici](./ActiviteS2/list_doublures.md) <br>
 
+## Activité Séance 3 (Aprés-midi)
+
+Allez sur ce lien (markdown pour cette activité) à la racine du repo : `/ActiviteS3.md` [Accés ici](./ActiviteS3.md) <br>
+Lien vers le code à rendre : `/ActiviteS3/bibliotheque_events` [Accés ici](./ActiviteS3/bibliotheque_events/) 
+
 ## TP2 (MATIN)
 
 Ayant assisté à une partie de la correction du TP2 sur le script de météo, j'ai décidé d'utiliser un autre exercice afin de réaliser quelque-chose de proche en terme de refactoring et mocking pour répondre aux objectifs pédagogique. Cela a plus de crédit.
