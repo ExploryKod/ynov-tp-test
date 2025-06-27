@@ -87,6 +87,8 @@ Voici ce que nous pouvons faire pour tester les cas où l'API retourne une erreu
 
  ## TP3 (MATIN)
 
+Il se trouve ici : `./Tp3_automation` [Cliquez ici pour accéder](./Tp3_automation/)
+
 Voici une mauvaise structure de projet : 
 ```sh
  mauvais_projet/
@@ -138,3 +140,4 @@ tp3.md 2025-06-12
 ├── requirements.txt # À créer
 ├── pytest.ini # À créer
 └── README.md # À créer
+
