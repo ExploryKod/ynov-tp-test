@@ -12,14 +12,16 @@ class MockConversionRateApi extends ConversionRateApi {
     this.rates.set(`${source}->${target}`, rate);
   }
 
-  override getRate(source: CurrencyIsoCode, target: CurrencyIsoCode): number {
-    const key = `${source}->${target}`;
-    const rate = this.rates.get(key);
-    if (rate === undefined) {
-      throw new Error(`Missing fake rate for ${key}`);
-    }
-    return rate;
+ override getRate(source: CurrencyIsoCode, target: CurrencyIsoCode): number {
+  const key = `${source}->${target}`;
+  const rate = this.rates.get(key);
+  console.log(`Mock API getRate from ${source} to ${target}: ${rate}`); 
+  if (rate === undefined) {
+    throw new Error(`Missing fake rate for ${key}`);
   }
+  return rate;
+}
+
 }
 
 

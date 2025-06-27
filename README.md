@@ -63,9 +63,6 @@ Je vous guide dans mes différentes réponses et documents associées aux questi
 > Consulter la capture d'écran `snapshots_states/kata_conversion_first_state.png` : état de base de l'exercice avant tout refactoring.<br>
 - [Cliquez ici pour accéder](./tp2_mocking_amaury/snapshots_states/kata_conversion_first_state.png)<br>
 
-Les autres captures seront présentes ici pour avoir les résultats des tests : 
-- [Cliquez ici pour accéder](./tp2_mocking_amaury/snapshots_states)<br>
-
 1. Que se passe-t-il si vous n'avez pas internet ?<br>
 - A ce stade, si l'on répare l'appel API, nous aurions accés à des données issue directement de l'API pour être réutilisé dans nos tests. Or si l'on veut tester en phase de développement sans accés internet et aussi avec de la performance nous avons un problème car aucune donnée ne peut parvenir à nos tests. Les tests vont donc échouer mais ce sera des échec faussés car le problème vient de l'absence de données fiables. Avec de la chance, l'outil de test prévient qu'aucune donnée n'est passé mais avec de la malchance on aurait affaire à des message trop généraux d'erreurs. Aussi nous n'aurions que peu d'information sur l'origine du problème car nous n'avons pas prévu de signaler clairement que le problème vient d'un accés internet défaillant.
 
@@ -80,4 +77,43 @@ Voici ce que nous pouvons faire pour tester les cas où l'API retourne une erreu
 - Vérifier les cas où l'appel ne retourne pas la donnée : donnée inexistante
 - Vérifier les cas où l'appel ne trouve pas un fichier : fichier non-trouvé
 
-..to be continued (jusque vendredi)
+ 3. Comment être sûr que votre fonction gère bien les différents cas ?
+
+ Pour cela nous pouvons utiliser des technique comme la table de vérité qui test chaque condition booléenne avec précision en testant ainsi tous les cas limites. Pour autant, cela est peut-être trop poussé dans notre cas où nous allons utiliser les tests paramétré pour tester un ensemble de cas : cas nominaux, cas négatifs, cas limites. On n'oubliera pas les cas où les paramètres sont mal renseigné, erreur de type etc... 
+
+ 4. Que doit retourner votre fonction si status_code != 200 ?
+
+ ## TP3 (MATIN)
+
+Voici une mauvaise structure de projet : 
+```sh
+ mauvais_projet/
+├── calculs.py
+├── utilisateurs.py
+├── test1.py
+├── test_calcul_bidule.py
+├── TestUtilisateur.py
+└── autre_test.py
+```
+
+1. Quels problèmes voyez-vous dans cette organisation ?
+
+- Le nommage des fichiers n'est pas relier aux fichiers du code testé (ex: test1 ne signifie rien)
+- Les noms utilisé ne reflète pas le métier ou le comportement testé (ex: test_calcul_bidule)
+- Nous n'avons aucune véritable séparation entre les tests et le code testé. On gagnerait avec avoir un dossier src/ et un dossier tests/ a minima ou, plus poussé, des 'package by feature' basées sur les use-case comme en clean architecture.
+
+- Un développeur nouveau va prendre le temps de chercher où se trouve chaque test donc cela a un coût horaire.
+- Si le code évolue et que l'on inclu de nouvelles fonctionnalités : il sera difficile d'isoler les fichiers de certains tests car ils ne se basent pas sur les unités du code testés ou ne sépare pas tests unitaire / tests d'intégration. On va devoir recoder et réécrire plus de code qu'il en faudrait si on avait bien séparé et isolé les modules ou les comportements. Difficile de respecter le SRP (single responsibility principle) dans ce contexte.
+- On a aucun fichiers de configuration ou de models généraux et donc on doit répéter ces pattern avec risque d'erreurs et donc tests tronqués. On pourrait gagner à créer des fixtures mise dans un espace commun ou avoir un dossier de type "common". Cela n'est pas DRY (Do not Repeat Yourself).
+
+2. Comment un nouveau développeur s'y retrouverait-il ?
+
+- Il va devoir aller dans chaque dossier pour relier les bouts de code entre-eux et cela va lui prendre du temps au lieu de juste faire la tâche demandé et ciblé sur un tests. Là il va devoir tout comprendre et ne pourra pas aller vite. 
+- Il ne comprend pas le métier en lisant les fichier ce qui demande un jeu question-réponse avec les collègues qui savent (perte de temps)
+
+3. Comment lancer tous les tests d'un coup ?
+
+Comment c'est mal nommé, pytest ne repère pas tous les tests avec un simple `pytest` donc on doit faire a minimal cela :
+`pytest test1.py test_calcul_bidule.py TestUtilisateur.py autre_test.py`
+
+
