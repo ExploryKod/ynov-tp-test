@@ -31,29 +31,12 @@ Il y a deux acteurs : un organisateur et un utilisateur de la bibliothèque d'é
 
 Nous allons choisir une fonctionnalité simple pour le cycle de TDD : ajouter un évènement.
 
-## Détail du cycle TDD suivi sur "Ajouter un évènement".
+## Création d'un environnement de base 
 
 - Framework choisi : NestJs avec Jest en librairie de test (et des outils complémentaires)
 - Point de départ, faire un git checkout à ce commit : `ActiviteS3(initial): initial commit on activiteS3`
 
-Je vais documenter commit aprés commit ma démarche TDD sur ce projet.
-Le point de départ est une application NestJs minimale qui expose un 'Hello World'.
-Nous devons créer une fonctionnalité dans le cadre d'un système d'inscription à des évènements.
-
-### Départ : création d'un environnement et réflexion générale sur les cas d'utilisation
-
-### Détail du cycle de TDD sur "Ajouter un évènement" 
-
-Nous allons respecter la démarche du TDD pour réaliser un premier cas d'usage : **ajouter un évènement**.<br>
-
-Nous allons creer une structure qui rend le **couplage le plus faible possible** découpé par use-case.<br> 
-
-Nous nous inspirons de l'**architecture hexagonal** pour créer un système trés modulaire.<br>
-
-#### Nous codons un premier pan minimal de la fonctionnalité pour y exercer les 3 phases du TDD
-- Commit de référence : `feat(usecases): create minimal add a new event use-case - tdd red phase`
-
-1. Nous allons préparer l'environnement des tests (le premier A de AAA: Arrange)
+Nous allons préparer l'environnement des tests (le premier A de AAA: Arrange)
 - Nous créons l'entité Event qui reprend ce dont a besoin un évènement : 
 
 ```sh
@@ -74,7 +57,18 @@ export class Event {
 - Dans un dossier usecases : nous créons `add-event.ts` et pour les tests `add-events.test.ts`
 - Nous créons des tests avec un `BeforeAll` qui va reprendre des objets et mettre en place l'environnement qui sera repris pat chaque test de cette suite.
 
-2. En TDD, **phase rouge** : nous allons écrire notre tests pour réaliser cette action :
+## Détail du cycle TDD suivi sur "Ajouter un évènement".
+
+Je vais documenter commit aprés commit ma démarche TDD sur ce projet.
+Le point de départ est une application NestJs minimale qui expose un 'Hello World'.
+Nous devons créer une fonctionnalité dans le cadre d'un système d'inscription à des évènements.
+
+Nous allons creer une structure qui rend le **couplage le plus faible possible** découpé par use-case.<br> 
+
+Nous nous inspirons de l'**architecture hexagonal** pour créer un système trés modulaire.<br>
+
+### I En TDD, 'phase rouge' : nous allons écrire notre test pour réaliser cette action :
+- Commit de référence : `feat(usecases): create minimal add a new event use-case - tdd red phase`
 - Notre but est que l'évènement soit sauvegardé en base de donnée
 - On écrit donc un test en respectant le AAA et en utilisant ce que nous avons préparé.
 
@@ -92,7 +86,7 @@ Nous avons bel et bien un échec :
 
 En effet, notre code n'est pas encore implémenté : on a juste un squelette qui vise à ce que les tests n'échoue pas pour une raison non-lié à la fonctionnalité. 
 
-3. TDD - Ajouter un évènement - Faire passer les tests (Phase Green)
+### II En TDD - Ajouter un évènement - Faire passer les tests (Phase Green)
 Commit concernées : 
 - `feat(add-event): retrive an id - test first pass`
 - `feat(add-event): cas nominal passe - tdd green phase`
@@ -118,7 +112,7 @@ Voici un extrait de notre méthode :
 
     return { id };
   ```
-4. Phase du refactor : améliorer le code sans changer le comportement
+### III TDD - Phase du refactor : améliorer le code sans changer le comportement
 
 Dans notre cas, nous devrions ici par exemple : 
 - Organiser mieux nos fichiers en créant les ports / adapters
@@ -130,4 +124,6 @@ Ex: la constante `RANDO_EVENT` est un évènement type pour une randonnée dans 
 On pourrait aller plus loin : créer des tests paramétrés qui vont tester différents cas nominaux (nombre de participants, dates différentes ...)
 
 A ce moment l'usage d'un outil comme **WallabyJs** est précieux : il indique partout dans le code si le test en lien avec ce code passe ainsi que sur les tests sans avoir besoin de lancer un `pnpm run test`. Ainsi le moindre changement en phase de refactor indique immédiatement si le test passe ou non par une pastille verte ou rouge et un simple survol avec la souris donne des détails. Dans le cadre d'une démarche de TDD il permet d'aller vite et ne pas perdre le fil de sa pensée en plein travail.
+
+## Notre stratégie de test et les approval tests
 
