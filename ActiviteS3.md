@@ -82,7 +82,7 @@ export class Event {
 - Notre but est que l'évènement soit sauvegardé en base de donnée
 - On écrit donc un test en respectant le AAA et en utilisant ce que nous avons préparé.
 
-Dans le cadre du TDD nous codons un pan minimal mais cohérent et lançons les tests qui vont sûrement échouer. C'est la phase 
+Dans le cadre du TDD nous codons un pan minimal mais cohérent et lançons les tests qui vont sûrement échouer. C'est la phase rouge.
 L'échec des tests renseigne sur ce qui va manquer à notre fonction pour qu'elle soit au moins fonctionnelle (cas nominal).
 
 Nous avons donc un test qui va : 
@@ -96,8 +96,10 @@ Nous avons bel et bien un échec :
 
 En effet, notre code n'est pas encore implémenté : on a juste un squelette qui vise à ce que les tests n'échoue pas pour une raison non-lié à la fonctionnalité. 
 
-3. TDD - Ajouter un évènement - Faire passer les tests 
-
+3. TDD - Ajouter un évènement - Faire passer les tests (Phase Green)
+Commit concernées : 
+- `feat(add-event): retrive an id - test first pass`
+- `feat(add-event): cas nominal passe - tdd green phase`
 Tout d'abord nous allons faire passer le test pour retourner un id : nous retournons en dur in id dans la fonction et il passe.
 
 Cette fois nous allons coder ce qui manque dans notre class qui créer les évènements. Nous allons créer un évènement en respectant notre entité Event.<br>
@@ -120,8 +122,10 @@ Voici un extrait de notre méthode :
 
     return { id };
   ```
-4. Phase du refactor : ajouter un évènement mais en traitant les cas limites et améliorer le code.
+4. Phase du refactor : améliorer le code sans changer le comportement
 
-Nous avons vérifier le cas positif, la mission principal de notre use-case mais nous ne savons rien de son comportement lors de cas limites, cas négatifs ou encore si le code respecte les bonnes pratiques pour son évolution.
+Dans notre cas, nous devrions ici par exemple : 
+- Organiser mieux nos fichiers en créant les ports / adapters
+Mais connaissant la structure d'avance nous nous sommes trop précipité au début pour créer l'environnement des tests et avons déjà créer ces séparations.
 
-C'est pourquoi à nouveau, nous allons créer des tests en ce sens. C'est la phase du refactor.
+Alors que reste t-il à refactor dans notre cas ?
