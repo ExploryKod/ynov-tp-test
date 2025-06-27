@@ -9,6 +9,6 @@ export class AddNewEvent {
   ) {}
 
   async execute(data: any) {
-    return { id: '' };
+    return { id: 'id-1' };
   }
 }

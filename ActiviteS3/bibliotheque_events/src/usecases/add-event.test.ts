@@ -10,10 +10,20 @@ describe('Ajouter un évènement', () => {
   beforeEach(() => {
     repository = new EventRepositoryMocker();
     idGenerator = new FixedIDGenerator();
-    useCase = new AddNewEvent();
+    useCase = new AddNewEvent(repository, idGenerator);
   });
 
-  describe('Scenario: happy path - cas nominal', () => {
+  describe('Scenario: happy path - cas nominal', () => { 
+    it("Doit retourner un id de l'évènement", async () => {
+      const result = await useCase.execute({
+        title: 'Randonnée dans les gorges du Tarn',
+        participants: 100,
+        startDate: new Date('2026-01-10T10:00:00.000Z'),
+        endDate: new Date('2026-01-10T11:00:00.000Z'),
+      });
+
+      expect(result.id).toEqual('id-1');
+    });
     it('Doit insérer un évènement dans la base de donnée', async () => {
       await useCase.execute({
         title: 'Randonnée dans les gorges du Tarn',
