@@ -1,0 +1,5 @@
+# TODO: Listez les dépendances de production
+# (aucune pour ce projet simple)
+# TODO: Listez les dépendances de développement
+pytest>=7.0.0
+pytest-cov>=4.0.0
