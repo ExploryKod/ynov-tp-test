@@ -9,3 +9,7 @@ type EventProps = {
 export class Event {
   constructor(public props: EventProps) {}
 }
+
+export type AddNewEventResponseDTO = {
+  id: string;
+};

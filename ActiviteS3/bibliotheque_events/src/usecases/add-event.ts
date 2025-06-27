@@ -8,7 +8,24 @@ export class AddNewEvent {
     private readonly idGenerator: IIDGenerator,
   ) {}
 
-  async execute(data: any) {
-    return { id: '' };
+  async execute(data: {
+    title: string;
+    participants: number;
+    startDate: Date;
+    endDate: Date;
+  }) {
+    const id = this.idGenerator.generate();
+
+    this.repository.create(
+      new Event({
+        id,
+        title: data.title,
+        participants: data.participants,
+        startDate: data.startDate,
+        endDate: data.endDate,
+      }),
+    );
+
+    return { id };
   }
 }

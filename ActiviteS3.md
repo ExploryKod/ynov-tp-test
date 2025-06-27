@@ -78,11 +78,11 @@ export class Event {
 - Dans un dossier usecases : nous créons `add-event.ts` et pour les tests `add-events.test.ts`
 - Nous créons des tests avec un `BeforeAll` qui va reprendre des objets et mettre en place l'environnement qui sera repris pat chaque test de cette suite.
 
-2. En TDD, phase rouge : nous allons écrire notre tests pour réaliser cette action :
+2. En TDD, **phase rouge** : nous allons écrire notre tests pour réaliser cette action :
 - Notre but est que l'évènement soit sauvegardé en base de donnée
 - On écrit donc un test en respectant le AAA et en utilisant ce que nous avons préparé.
 
-Dans le cadre du TDD nous codons un pan minimal mais cohérent et lançons les tests qui vont sûrement échouer. C'est la phase 
+Dans le cadre du TDD nous codons un pan minimal mais cohérent et lançons les tests qui vont sûrement échouer. C'est la phase rouge.
 L'échec des tests renseigne sur ce qui va manquer à notre fonction pour qu'elle soit au moins fonctionnelle (cas nominal).
 
 Nous avons donc un test qui va : 
@@ -96,5 +96,42 @@ Nous avons bel et bien un échec :
 
 En effet, notre code n'est pas encore implémenté : on a juste un squelette qui vise à ce que les tests n'échoue pas pour une raison non-lié à la fonctionnalité. 
 
+3. TDD - Ajouter un évènement - Faire passer les tests (Phase Green)
+Commit concernées : 
+- `feat(add-event): retrive an id - test first pass`
+- `feat(add-event): cas nominal passe - tdd green phase`
+Tout d'abord nous allons faire passer le test pour retourner un id : nous retournons en dur in id dans la fonction et il passe.
 
+Cette fois nous allons coder ce qui manque dans notre class qui créer les évènements. Nous allons créer un évènement en respectant notre entité Event.<br>
+Nous auront donc un use-case qui permet de vérifier le cas nominal d'ajout d'un évènement.
+
+Il retournera donc l'event issu de la base de donnée lors de l'appel à celle-ci. 
+Il pourra avantageusement utiliser l'adapter qui permet de mocker le comportement avec aisance. Nous avons en effet la possibilité de changer cela aisément grâce à nos interface et l'inversion de dépendance. Il sera aisé de simplement se connecter à un adapter qui appel une véritable base de donnée ensuite.
+
+Voici un extrait de notre méthode : 
+```ts
+    this.repository.create(
+      new Event({
+        id,
+        title: data.title,
+        participants: data.participants,
+        startDate: data.startDate,
+        endDate: data.endDate,
+      }),
+    );
+
+    return { id };
+  ```
+4. Phase du refactor : améliorer le code sans changer le comportement
+
+Dans notre cas, nous devrions ici par exemple : 
+- Organiser mieux nos fichiers en créant les ports / adapters
+Mais connaissant la structure d'avance nous nous sommes trop précipité au début pour créer l'environnement des tests et avons déjà créer ces séparations.
+
+Alors que reste t-il à refactor dans notre cas ?
+- Nous créons une ou plusieurs constantes avec des cas nominal types que l'on peux mettre dans nos tests
+Ex: la constante `RANDO_EVENT` est un évènement type pour une randonnée dans le Tarn avec 100 participants maximum.
+On pourrait aller plus loin : créer des tests paramétrés qui vont tester différents cas nominaux (nombre de participants, dates différentes ...)
+
+A ce moment l'usage d'un outil comme **WallabyJs** est précieux : il indique partout dans le code si le test en lien avec ce code passe ainsi que sur les tests sans avoir besoin de lancer un `pnpm run test`. Ainsi le moindre changement en phase de refactor indique immédiatement si le test passe ou non par une pastille verte ou rouge et un simple survol avec la souris donne des détails. Dans le cadre d'une démarche de TDD il permet d'aller vite et ne pas perdre le fil de sa pensée en plein travail.
 
