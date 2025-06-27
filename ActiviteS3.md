@@ -129,3 +129,9 @@ Dans notre cas, nous devrions ici par exemple :
 Mais connaissant la structure d'avance nous nous sommes trop précipité au début pour créer l'environnement des tests et avons déjà créer ces séparations.
 
 Alors que reste t-il à refactor dans notre cas ?
+- Nous créons une ou plusieurs constantes avec des cas nominal types que l'on peux mettre dans nos tests
+Ex: la constante `RANDO_EVENT` est un évènement type pour une randonnée dans le Tarn avec 100 participants maximum.
+On pourrait aller plus loin : créer des tests paramétrés qui vont tester différents cas nominaux (nombre de participants, dates différentes ...)
+
+A ce moment l'usage d'un outil comme **WallabyJs** est précieux : il indique partout dans le code si le test en lien avec ce code passe ainsi que sur les tests sans avoir besoin de lancer un `pnpm run test`. Ainsi le moindre changement en phase de refactor indique immédiatement si le test passe ou non par une pastille verte ou rouge et un simple survol avec la souris donne des détails. Dans le cadre d'une démarche de TDD il permet d'aller vite et ne pas perdre le fil de sa pensée en plein travail.
+
