@@ -8,8 +8,30 @@ Vous intégrez une équipe qui teste les fonctionnalités d’une bibliothèque 
 2. Utiliser la méthode TDD : écriture du test avant, code minimal, refactor
 3. Utiliser Approval Testing pour valider le contenu du message ou du fichier généré
 4. Générer un fichier d’approbation (golden file ou snapshot selon le framework choisi)
+5. Exposer sa démarche (stratégie de test et cycle de TDD) > voir ci-dessous.
 
-## Ma démarche 
+## Notre application : réflexion générale (avant même de coder en TDD)
+
+On va tout d'abord se poser des questions métier pour implémenter avec une logique minimale pour l'exercice : 
+Nous n'allons pas implémenter un système d'authentification afin de rester dans la version minimaliste.
+Il y a deux acteurs : un organisateur et un utilisateur de la bibliothèque d'évènement.
+
+1. **Ajouter un évènement** : en tant qu'organisateur je veux ajouter un évènement à la bibliothèque d'évènements
+- Actions de l'organisateur : changer les dates, changer le nombre de participants, annuler l'évènement, envoyer un email aux utilisateurs si annulation, changement ou création.
+- Pré-requis : seul l'organisateur peut faire les actions ci-dessus.
+- Contraintes : doit se faire 6 jours à l'avance et le nombre de places est limité à 1000, 
+
+2. **S'inscrire à un évènements** : en tant que utilisateur de l'application je veux m'inscrire à des évènements
+- Actions : réserver son ticket, annuler sa réservation à un évènement, consulter ses réservations (publiquement car pas de compte).
+- Contraintes : vérifier les tickets restants soit < nombre max d'inscris, vérifier qu'un utilisateur n'est pas déjà inscris
+
+3. Utilisateur : Recevoir une confirmation d'inscription 
+- Actions: Réception d'une confirmation d'inscription avec le nom de l'évènement, la date, ses coordonnées.
+- Contraintes : doit être inscris à un évènement et avoir renseigné un email.
+
+Nous allons choisir une fonctionnalité simple pour le cycle de TDD : ajouter un évènement.
+
+## Détail du cycle TDD suivi sur "Ajouter un évènement".
 
 - Framework choisi : NestJs avec Jest en librairie de test (et des outils complémentaires)
 - Point de départ, faire un git checkout à ce commit : `ActiviteS3(initial): initial commit on activiteS3`
@@ -18,35 +40,9 @@ Je vais documenter commit aprés commit ma démarche TDD sur ce projet.
 Le point de départ est une application NestJs minimale qui expose un 'Hello World'.
 Nous devons créer une fonctionnalité dans le cadre d'un système d'inscription à des évènements.
 
-### Départ
+### Départ : création d'un environnement et réflexion générale sur les cas d'utilisation
 
-On va tout d'abord se poser des questions métier pour implémenter avec une logique minimale pour l'exercice : 
-
-Nous n'allons pas implémenter un système d'authentification afin de rester dans la version minimaliste.
-
-Il y a deux acteurs : un organisateur et un utilisateur de la bibliothèque d'évènement.
-
-1. Ajouter un évènement : en tant qu'organisateur je veux ajouter un évènement à la bibliothèque d'évènements
-- Actions de l'organisateur : changer les dates, changer le nombre de participants, annuler l'évènement, envoyer un email aux utilisateurs si annulation, changement ou création.
-- Pré-requis : seul l'organisateur peut faire les actions ci-dessus.
-- Contraintes : doit se faire 6 jours à l'avance et le nombre de places est limité à 1000, 
-
-
-2. S'inscrire à un évènements : en tant que utilisateur de l'application je veux m'inscrire à des évènements
-- Actions : réserver son ticket, annuler sa réservation à un évènement, consulter ses réservations (publiquement car pas de compte).
-- Contraintes : vérifier les tickets restants soit < nombre max d'inscris, vérifier qu'un utilisateur n'est pas déjà inscris
-
-3. Utilisateur : Recevoir une confirmation d'inscription 
-- Actions: Réception d'une confirmation d'inscription avec le nom de l'évènement, la date, ses coordonnées.
-- Contraintes : doit être inscris à un évènement et avoir renseigné un email.
-
-La confirmation écrite sera stockée ici dans un fichier pour l'exercice et pourra faire l'objet d'une démarche d'approval tests.
-
-Evidemment c'est pas trés bien au niveau du RGPD mais pour l'exercice les emails seront rendu publique et nous ne traiterons pas ces cas de sécurisation juridiques.
-
-Pour ce faire nous avons une base de code.
-
-### Etape 1 - Ajouter un évènement 
+### Détail du cycle de TDD sur "Ajouter un évènement" 
 
 Nous allons respecter la démarche du TDD pour réaliser un premier cas d'usage : **ajouter un évènement**.<br>
 
