@@ -1,4 +1,4 @@
-import { FixedIDGenerator } from '../adapters/fixed-id-generator';
+import { FixedIDGenerator, ID } from '../../core/adapters/fixed-id-generator';
 import { EventRepositoryMocker } from '../adapters/eventRepositoryMocker';
 import { AddNewEvent } from './add-event';
 
@@ -7,14 +7,17 @@ describe('Ajouter un évènement', () => {
   let idGenerator: FixedIDGenerator;
   let useCase: AddNewEvent;
 
-  const ID = 'id-1';
+  const END_DATE = '2026-02-10T11:00:00.000Z';
+  const START_DATE = '2026-01-10T10:00:00.000Z';
+  const PARTICIPANTS = 100;
+  const TITLE = 'Randonnée dans les gorges du Tarn';
 
   const RANDO_EVENT = {
     id: ID,
-    title: 'Randonnée dans les gorges du Tarn',
-    participants: 100,
-    startDate: new Date('2026-01-10T10:00:00.000Z'),
-    endDate: new Date('2026-01-10T11:00:00.000Z'),
+    title: TITLE,
+    participants: PARTICIPANTS,
+    startDate: new Date(START_DATE),
+    endDate: new Date(END_DATE),
   };
 
   beforeEach(() => {
@@ -25,10 +28,10 @@ describe('Ajouter un évènement', () => {
 
   describe('Scenario: happy path - cas nominal', () => {
     const RANDO_EVENT_PARAMS = {
-      title: 'Randonnée dans les gorges du Tarn',
-      participants: 100,
-      startDate: new Date('2026-01-10T10:00:00.000Z'),
-      endDate: new Date('2026-01-10T11:00:00.000Z'),
+      title: TITLE,
+      participants: PARTICIPANTS,
+      startDate: new Date(START_DATE),
+      endDate: new Date(END_DATE),
     };
 
     it("Doit retourner un id de l'évènement", async () => {

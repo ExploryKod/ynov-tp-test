@@ -119,11 +119,22 @@ Dans notre cas, nous devrions ici par exemple :
 Mais connaissant la structure d'avance nous nous sommes trop précipité au début pour créer l'environnement des tests et avons déjà créer ces séparations.
 
 Alors que reste t-il à refactor dans notre cas ?
+- Nous modifions l'architecture en créant un dossier `core` et un autre `events` afin de prévoir l'évolution (1)
 - Nous créons une ou plusieurs constantes avec des cas nominal types que l'on peux mettre dans nos tests
+- Un petit controller va reprendre notre use case pour l'ajout d'un évènement : nous avons notre première route de type POST. (2)
+- Zod est ajouté et nous créons un contrat pour valider les types.
+- Nous avons désormais des commands et plus tard on aura des queries : addNewEvent est une commande car il ajoute un élèment en base. 
+
 Ex: la constante `RANDO_EVENT` est un évènement type pour une randonnée dans le Tarn avec 100 participants maximum.
 On pourrait aller plus loin : créer des tests paramétrés qui vont tester différents cas nominaux (nombre de participants, dates différentes ...)
+
+(1) En effet pour l'instant nous créons un évènement mais aprés il y a d'autres cas métiers non-lié aux évènements : gestion des utilisateurs, relation aux tiers etc...
+(2) Ici il est possible de nous reprocher de s'éloigner du pure refactoring mais notre code est minimal et ne fait que reprendre la logique initiale de notre commande dans `add-event.ts`
+
+Nous avons donc organiser nos dossier pour rendre plus lisible le métiers et ses différentes parties (comme 'events'). Nous avons maintenant un dossier qui va gérer tous ce qui sera commun (le 'core'). Il fait office de carrefour qui va gérer l'articulation entre les modules. Il va donc avoir tout ce qui est commun aux modules comme la génération d'un id. Désormais on pourra générer un id fixe ou un id aléatoire. 
 
 A ce moment l'usage d'un outil comme **WallabyJs** est précieux : il indique partout dans le code si le test en lien avec ce code passe ainsi que sur les tests sans avoir besoin de lancer un `pnpm run test`. Ainsi le moindre changement en phase de refactor indique immédiatement si le test passe ou non par une pastille verte ou rouge et un simple survol avec la souris donne des détails. Dans le cadre d'une démarche de TDD il permet d'aller vite et ne pas perdre le fil de sa pensée en plein travail.
 
 ## Notre stratégie de test et les approval tests
 
+Nous vérifions enfin sur Postman si notre route POST marche bien.

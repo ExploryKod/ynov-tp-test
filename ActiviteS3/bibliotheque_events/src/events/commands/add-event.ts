@@ -1,5 +1,5 @@
 import { Event } from '../entities/event.entity';
-import { IIDGenerator } from '../ports/id-generator.interface';
+import { IIDGenerator } from '../../core/ports/id-generator.interface';
 import { IEventRepository } from '../ports/event-repository.interface';
 
 export class AddNewEvent {
