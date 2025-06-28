@@ -135,6 +135,10 @@ Nous avons donc organiser nos dossier pour rendre plus lisible le métiers et se
 
 A ce moment l'usage d'un outil comme **WallabyJs** est précieux : il indique partout dans le code si le test en lien avec ce code passe ainsi que sur les tests sans avoir besoin de lancer un `pnpm run test`. Ainsi le moindre changement en phase de refactor indique immédiatement si le test passe ou non par une pastille verte ou rouge et un simple survol avec la souris donne des détails. Dans le cadre d'une démarche de TDD il permet d'aller vite et ne pas perdre le fil de sa pensée en plein travail.
 
+Tests de la phase du refactor : [Accés capture écran ici](./ActiviteS3/snapshots/add_event/tdd_add_event_after_refactor.png)
+
+Nous vérifions enfin sur Postman si notre route POST marche bien : [Accés capture écran ici](./ActiviteS3/snapshots/add_event/postman_add_event_controller.png)
+
 ## Notre stratégie de test et les approval tests
 
-Nous vérifions enfin sur Postman si notre route POST marche bien.
+
